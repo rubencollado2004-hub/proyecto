@@ -3,7 +3,7 @@ package com.equipo.soundbox.modelo;
 /**
  * Interfaz que define el comportamiento de reproducción de un álbum.
  *
- * @author NombreEquipo
+ * @author José y Ruben
  * @version 1.0
  */
 public interface Reproducible {
