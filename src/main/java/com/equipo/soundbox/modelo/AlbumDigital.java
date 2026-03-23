@@ -16,14 +16,14 @@ public class AlbumDigital extends Album {
      *
      * @param titulo     título del álbum
      * @param artista    nombre del artista
-     * @param anio       año de publicación
+     * @param año       año de publicación
      * @param plataforma plataforma de distribución
      * @param bitrate    calidad de audio en kbps
      * @throws IllegalArgumentException si el bitrate no es válido
      */
-    public AlbumDigital(String titulo, String artista, int anio,
+    public AlbumDigital(String titulo, String artista, int año,
                         String plataforma, int bitrate) {
-        super(titulo, artista, anio);
+        super(titulo, artista, año);
         if (bitrate != 128 && bitrate != 192 && bitrate != 256 && bitrate != 320)
             throw new IllegalArgumentException("Bitrate no válido");
         this.plataforma = plataforma;
