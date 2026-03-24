@@ -1,6 +1,8 @@
-package com.equipo.soundbox.modelo;
+package com.equipo.soundbox.colecciones;
 
 import java.util.ArrayList;
+
+import com.equipo.soundbox.modelo.Album;
 
 /**
  * Clase utilitaria con métodos genéricos sobre colecciones de álbumes.
