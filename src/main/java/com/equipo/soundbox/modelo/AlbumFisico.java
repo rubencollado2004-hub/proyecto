@@ -16,14 +16,14 @@ public class AlbumFisico extends Album {
      *
      * @param titulo    título del álbum
      * @param artista   nombre del artista
-     * @param anio      año de publicación
+     * @param año      año de publicación
      * @param formato   formato físico (CD, Vinilo, Cassette)
      * @param numDiscos número de discos
      * @throws IllegalArgumentException si el número de discos es menor que 1
      */
-    public AlbumFisico(String titulo, String artista, int anio,
+    public AlbumFisico(String titulo, String artista, int año,
                        String formato, int numDiscos) {
-        super(titulo, artista, anio);
+        super(titulo, artista, año);
         if (numDiscos < 1)
             throw new IllegalArgumentException("Debe tener al menos 1 disco");
         this.formato = formato;
