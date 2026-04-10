@@ -96,6 +96,7 @@ public class VentanaPrincipal extends JFrame {
         JButton btnOrdenarTitulo   = new JButton("Ordenar por título");
         JButton btnAgruparArtista  = new JButton("Agrupar por artista");
         JButton btnMedia           = new JButton("Media puntuaciones");
+        JButton btnReproducir      = new JButton("Reproducir álbum");
         JButton btnExportarJSON    = new JButton("Exportar JSON");
         JButton btnImportarJSON    = new JButton("Importar JSON");
         JButton btnGuardar         = new JButton("Guardar");
@@ -105,7 +106,7 @@ public class VentanaPrincipal extends JFrame {
         for (JButton btn : new JButton[]{
                 btnAnadir, btnEliminar, btnPuntuar, btnMejorValorado,
                 btnFiltrarTipo, btnOrdenarTitulo, btnAgruparArtista,
-                btnMedia, btnExportarJSON, btnImportarJSON, btnGuardar}) {
+                btnMedia, btnReproducir, btnExportarJSON, btnImportarJSON, btnGuardar}) {
             btn.setMaximumSize(dimBoton);
             btn.setPreferredSize(dimBoton);
             btn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -259,6 +260,33 @@ public class VentanaPrincipal extends JFrame {
             JOptionPane.showMessageDialog(this,
                     String.format("Media de puntuaciones: %.2f", media),
                     "Media", JOptionPane.INFORMATION_MESSAGE);
+        });
+
+        // LAMBDA — Reproducir álbum
+        btnReproducir.addActionListener(e -> {
+            int fila = tabla.getSelectedRow();
+            if (fila == -1) {
+                JOptionPane.showMessageDialog(this,
+                        "Selecciona un álbum para reproducir.",
+                        "Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String titulo = (String) modeloTabla.getValueAt(fila, 0);
+            Album album = gestor.getCatalogo().stream()
+                    .filter(a -> a.getTitulo().equalsIgnoreCase(titulo))
+                    .findFirst()
+                    .orElse(null);
+            if (album != null) {
+                // Usar la interfaz Reproducible para reproducir
+                album.reproducir();
+                int duracionSegundos = album.getDuracionTotal();
+                int minutos = duracionSegundos / 60;
+                int segundos = duracionSegundos % 60;
+                String mensaje = String.format("Duración: %d:%02d%nPuntuación: %.1f/10.0",
+                        minutos, segundos, album.getPuntuacion());
+                JOptionPane.showMessageDialog(this, mensaje,
+                        "Reproduciendo: " + titulo, JOptionPane.INFORMATION_MESSAGE);
+            }
         });
 
         // LAMBDA — Exportar JSON
